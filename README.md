@@ -55,4 +55,5 @@ GoogleMap内の店舗の位置にあるマーカーをクリックすること�
 
 #### GitHubリポジトリ
 - アカウント名: `haruya1102`
-- リポジトリ名: `fenrir-2025-recruitment`
+- リポジトリ名: `insta-eats`
+- URL: https://github.com/haruya1102/insta-eats.git
