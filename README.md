@@ -1,46 +1,58 @@
-# Getting Started with Create React App
+## 簡易仕様書
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### 概要
+- **作者**: 山内陽哉
+- **アプリ名**: InstaEats
+- **開発環境**: vsCode
+- **開発言語**: TypeScript
+- **フレームワーク**: React,tailwindcss
+- **動作対象ブラウザ**: Chrome 120.0.6099.129
+- **開発期間**: 17日間
+- **主要機能**:
+  1. **現在地やキーワードからの飲食店検索**: ユーザーの現在地情報やキーワード入力を基に、指定した範囲内の飲食店を検索する。
+  2. **店舗情報の詳細表示**: 選択した店舗の詳細情報（住所、営業時間、アクセスなど）を表示する。
+  3. **Google Maps連携**: 店舗の位置情報をGoogle Maps上で確認できる。
 
-## Available Scripts
+## アーキテクチャ
+- **コンポーネント構造**:
+  -  `App.tsx`: メインコンポーネント。ルーティングの設定を含む。
+  - `Router.tsx`: ルーティングの機能を備えたファイル。
+  - `api`: apiを取得するファイルが含まれているフォルダ。
+    - `geolocation.tsx`: Geolocation APIからユーザーの現在地を取得するファイル。
+    - `hotpepper.tsx`: ホットペッパーグルメサーチAPIから店舗情報を取得するファイル。
+  - `conponent`:各コンポーネントが含まれているフォルダ。
+    - `SearchForm.tsx`: 検索条件入力画面。現在地の取得と範囲指定を行う。
+    - `RestaurantList.tsx`: 検索結果画面。ページング対応。
+    - `RestaurantItem.tsx`: 検索結果画面内の各店舗情報を表示するコンポーネント。
+    - `RestaurantDetail.tsx`: 店舗詳細画面。店舗のより詳細な情報やURLなどを表示。
+    - `MapContainer.tsx`: Google Maps APIを使用し、地図上に店舗位置を表示。
+- **API利用**:
+  - ホットペッパーグルメサーチAPI: 店舗情報の取得
+  - Geolocation API: ユーザーの現在地取得
+  - GoogleMaps API: Googleマップを取得
 
-In the project directory, you can run:
+## コンセプト
+「すぐに何か食べたい！」、「近くの店をパッと見つけたい！」という人のためにインスタントかつ確実に自分の食べたいお店が見つかるアプリ
 
-### `npm start`
+## こだわったポイント
+GoogleMaps APIによって地図上に店舗位置を表示することで、視覚的にどこにどんな店があるのかを分かりやすくしています。また、店舗のマーカーをクリックすると店舗名が見えるようになっています。それによって、「近くの店をパッと見つけたい！」を実現しています。
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## デザイン面でこだわったポイント
+全体的に、シンプルで洗練されたデザインにしており、インスタントに使いやすい印象にしました。さらに、アクセントカラーとして食欲をそそるような温かみのあるオレンジを使っています。
+また、表示する情報をなるべく削ぎ落としてより必要な情報が見やすくなるように工夫しました。具体的には、現在のページ番号を「？ページ目」というようにそのまま表示するのではなく、ページングの番号を薄くすることで現在のページがわかるようにしました。
+さらに、レスポンシブデザインに対応しスマートフォン、タブレット、パソコンなどあらゆるハードでの利用を想定しています。
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## アドバイスして欲しいポイント
+本番環境でもAPIを取得して実装できるようにしたいです。
+検索結果画面にて、フィルター機能とソート機能を追加したいです。
+GoogleMap内の店舗の位置にあるマーカーをクリックすることで店舗詳細画面に遷移したいです。
+店舗詳細画面から検索結果画面に戻った際にマップがloadingにならないようにuseNavigateなどで戻るボタンを追加したいです。
 
-### `npm test`
+## 自己評価
+考えうる最低限の機能を搭載しましたが、まだまだ追加すべき機能や直すべきポイントがいくつかあると思います。例えば、フィルター機能とソート機能の追加や本番環境でAPIが取得できないCORSエラーの改善などです。
+しかし、デザインに関してはシンプルで自分としても使いやすいと感じています。
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+#### GitHubリポジトリ
+- アカウント名: `haruya1102`
+- リポジトリ名: `fenrir-2025-recruitment`
